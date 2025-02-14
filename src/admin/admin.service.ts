@@ -1,6 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Admin, AdminDocument } from './Schema/admin.schema';
 import * as bcrypt from 'bcrypt';
 
@@ -10,7 +14,6 @@ export class AdminService {
     @InjectModel(Admin.name) private adminModel: Model<AdminDocument>,
   ) {}
 
-  // Create Admin
   async createAdmin(
     name: string,
     email: string,
@@ -25,20 +28,23 @@ export class AdminService {
     return newAdmin.save();
   }
 
-  // Get All Admins
   async getAllAdmins(): Promise<Admin[]> {
     return this.adminModel.find().select('-password').exec();
   }
 
-  // Get Admin by ID
   async getAdminById(id: string): Promise<Admin> {
+    if (!Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid ID format');
+    }
     const admin = await this.adminModel.findById(id).select('-password');
     if (!admin) throw new NotFoundException('Admin not found');
     return admin;
   }
 
-  // Update Admin
   async updateAdmin(id: string, name?: string, email?: string): Promise<Admin> {
+    if (!Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid ID format');
+    }
     const updatedAdmin = await this.adminModel.findByIdAndUpdate(
       id,
       { name, email },
@@ -48,8 +54,10 @@ export class AdminService {
     return updatedAdmin;
   }
 
-  // Delete Admin
   async deleteAdmin(id: string): Promise<{ message: string }> {
+    if (!Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid ID format');
+    }
     const deletedAdmin = await this.adminModel.findByIdAndDelete(id);
     if (!deletedAdmin) throw new NotFoundException('Admin not found');
     return { message: 'Admin deleted successfully' };
