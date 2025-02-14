@@ -12,7 +12,6 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  // Login function
   async login(email: string, password: string) {
     const admin = await this.adminModel.findOne({ email });
     if (!admin) throw new UnauthorizedException('Invalid credentials');
@@ -21,7 +20,6 @@ export class AuthService {
     if (!isPasswordValid)
       throw new UnauthorizedException('Invalid credentials');
 
-    // Generate JWT Token
     const payload = { sub: admin._id, email: admin.email };
     return {
       access_token: this.jwtService.sign(payload),
