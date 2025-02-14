@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 import { LogoModule } from './logo/logo.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { LogoModule } from './logo/logo.module';
     AdminModule,
     AuthModule,
     LogoModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -11,7 +11,7 @@ import { UpdateLogoDto } from './dto/update-logo.dto';
 
 @Injectable()
 export class LogoService {
-  constructor(@InjectModel('Logo') private logoModel: Model<Logo>) {}
+  constructor(@InjectModel(Logo.name) private logoModel: Model<Logo>) {}
 
   async create(createLogoDto: CreateLogoDto): Promise<Logo> {
     const newLogo = new this.logoModel(createLogoDto);
