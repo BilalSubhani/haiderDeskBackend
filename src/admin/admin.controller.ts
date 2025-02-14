@@ -6,14 +6,15 @@ import {
   Delete,
   Body,
   Param,
+  UseGuards,
 } from '@nestjs/common';
 import { AdminService } from './admin.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
 
-  // Create Admin
   @Post()
   async createAdmin(
     @Body('name') name: string,
@@ -23,19 +24,19 @@ export class AdminController {
     return this.adminService.createAdmin(name, email, password);
   }
 
-  // Get All Admins
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   async getAllAdmins() {
     return this.adminService.getAllAdmins();
   }
 
-  // Get Admin by ID
+  @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   async getAdminById(@Param('id') id: string) {
     return this.adminService.getAdminById(id);
   }
 
-  // Update Admin
+  @UseGuards(AuthGuard('jwt'))
   @Patch(':id')
   async updateAdmin(
     @Param('id') id: string,
@@ -45,7 +46,7 @@ export class AdminController {
     return this.adminService.updateAdmin(id, name, email);
   }
 
-  // Delete Admin
+  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   async deleteAdmin(@Param('id') id: string) {
     return this.adminService.deleteAdmin(id);
