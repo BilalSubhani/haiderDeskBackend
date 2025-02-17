@@ -72,7 +72,7 @@ npm run start:prod
 | PATCH  | `/logo/:id` | Update a logo  |
 | DELETE | `/logo/:id` | Delete a logo  |
 
-### **Email APIs**
+### **Connected Email APIs**
 
 | Method | Endpoint     | Description     |
 | ------ | ------------ | --------------- |
@@ -81,6 +81,12 @@ npm run start:prod
 | GET    | `/email/:id` | Get email by ID |
 | PATCH  | `/email/:id` | Update an email |
 | DELETE | `/email/:id` | Delete an email |
+
+### **Send Email APIs**
+
+| Method | Endpoint     | Description     |
+| ------ | ------------ | --------------- |
+| POST   | `/send-email`     | Send email to connected emails    |
 
 ## 🛠 Technologies Used
 
