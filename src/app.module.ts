@@ -9,6 +9,7 @@ import { LogoModule } from './logo/logo.module';
 import { EmailModule } from './email/email.module';
 import { MailModule } from './mail/mail.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
     LogoModule,
     EmailModule,
     MailModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
