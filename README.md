@@ -84,9 +84,19 @@ npm run start:prod
 
 ### **Send Email APIs**
 
-| Method | Endpoint     | Description     |
-| ------ | ------------ | --------------- |
-| POST   | `/send-email`     | Send email to connected emails    |
+| Method | Endpoint      | Description                    |
+| ------ | ------------- | ------------------------------ |
+| POST   | `/send-email` | Send email to connected emails |
+
+### **Orders APIs**
+
+| Method | Endpoint             | Description            |
+| ------ | -------------------- | ---------------------- |
+| POST   | `/orders`            | Add an order           |
+| GET    | `/orders`            | Get all orders         |
+| GET    | `/orders/:id`        | Get order by ID        |
+| PATCH  | `/orders/:id/status` | Update an order status |
+| DELETE | `/orders/:id`        | Delete an order        |
 
 ## 🛠 Technologies Used
 
