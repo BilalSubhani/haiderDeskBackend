@@ -37,6 +37,16 @@ export class AdminController {
   }
 
   @UseGuards(AuthGuard('jwt'))
+  @Get('/email/:email')
+  async getAdminByEmail(@Param('email') email: string) {
+    const admin = await this.adminService.getAdminByEmail(email);
+    if (!admin) {
+      return { message: 'Admin not found' };
+    }
+    return { name: admin.name, email: admin.email };
+  }
+
+  @UseGuards(AuthGuard('jwt'))
   @Patch(':id')
   async updateAdmin(
     @Param('id') id: string,

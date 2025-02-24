@@ -2,6 +2,7 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
@@ -39,6 +40,24 @@ export class AdminService {
     const admin = await this.adminModel.findById(id).select('-password');
     if (!admin) throw new NotFoundException('Admin not found');
     return admin;
+  }
+
+  async getAdminByEmail(
+    email: string,
+  ): Promise<{ name: string; email: string }> {
+    try {
+      const admin = await this.adminModel
+        .findOne({ email })
+        .select('name email');
+
+      if (!admin) {
+        throw new NotFoundException(`Admin with email ${email} not found`);
+      }
+
+      return { name: admin.name, email: admin.email };
+    } catch (error) {
+      throw new InternalServerErrorException('Error retrieving admin by email');
+    }
   }
 
   async updateAdmin(id: string, name?: string, email?: string): Promise<Admin> {

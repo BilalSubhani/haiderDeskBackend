@@ -54,13 +54,14 @@ npm run start:prod
 
 ### **Admin APIs**
 
-| Method | Endpoint     | Description     |
-| ------ | ------------ | --------------- |
-| POST   | `/admin`     | Create an admin |
-| GET    | `/admin`     | Get all admins  |
-| GET    | `/admin/:id` | Get admin by ID |
-| PATCH  | `/admin/:id` | Update an admin |
-| DELETE | `/admin/:id` | Delete an admin |
+| Method | Endpoint              | Description        |
+| ------ | --------------------- | ------------------ |
+| POST   | `/admin`              | Create an admin    |
+| GET    | `/admin`              | Get all admins     |
+| GET    | `/admin/:id`          | Get admin by ID    |
+| GET    | `/admin/email/:email` | Get admin by email |
+| PATCH  | `/admin/:id`          | Update an admin    |
+| DELETE | `/admin/:id`          | Delete an admin    |
 
 ### **Category APIs**
 
