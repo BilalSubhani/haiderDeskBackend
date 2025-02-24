@@ -4,8 +4,9 @@ import {
   Post,
   Body,
   Param,
-  Put,
+  Patch,
   Delete,
+  HttpCode,
 } from '@nestjs/common';
 import { LogoService } from './logo.service';
 import { CreateLogoDto } from './dto/create-logo.dto';
@@ -16,27 +17,28 @@ export class LogoController {
   constructor(private readonly logoService: LogoService) {}
 
   @Post()
-  create(@Body() createLogoDto: CreateLogoDto) {
+  async create(@Body() createLogoDto: CreateLogoDto) {
     return this.logoService.create(createLogoDto);
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.logoService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.logoService.findOne(id);
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateLogoDto: UpdateLogoDto) {
+  @Patch(':id')
+  async update(@Param('id') id: string, @Body() updateLogoDto: UpdateLogoDto) {
     return this.logoService.update(id, updateLogoDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.logoService.remove(id);
+  @HttpCode(204)
+  async remove(@Param('id') id: string) {
+    await this.logoService.remove(id);
   }
 }
