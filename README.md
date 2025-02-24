@@ -62,6 +62,16 @@ npm run start:prod
 | PATCH  | `/admin/:id` | Update an admin |
 | DELETE | `/admin/:id` | Delete an admin |
 
+### **Category APIs**
+
+| Method | Endpoint          | Description        |
+| ------ | ----------------- | ------------------ |
+| POST   | `/categories`     | Create a category  |
+| GET    | `/categories`     | Get all categories |
+| GET    | `/categories/:id` | Get category by ID |
+| PATCH  | `/categories/:id` | Update a category  |
+| DELETE | `/categories/:id` | Delete a category  |
+
 ### **Logo APIs**
 
 | Method | Endpoint    | Description    |
